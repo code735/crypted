@@ -4,11 +4,16 @@ import './App.css'
 type InputTab = 'image' | 'video' | 'text'
 
 function App() {
+  const currentUrl = new URL(window.location.href)
+  const sharedText = currentUrl.searchParams.get('m') ?? ''
+  const isTextView = currentUrl.pathname.startsWith('/text') && sharedText.length > 0
+
   const [activeTab, setActiveTab] = useState<InputTab>('image')
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [videoFile, setVideoFile] = useState<File | null>(null)
   const [textValue, setTextValue] = useState('')
   const [createdLink, setCreatedLink] = useState('')
+  const [linkInput, setLinkInput] = useState('')
 
   const tabs: Array<{ key: InputTab; label: string }> = [
     { key: 'image', label: 'Image' },
@@ -35,7 +40,33 @@ function App() {
   const handleCreate = () => {
     if (!canCreate) return
     const id = generateId()
-    setCreatedLink(`https://links.local/${activeTab}/${id}`)
+    const origin = window.location.origin
+    if (activeTab === 'text') {
+      const encoded = encodeURIComponent(textValue.trim())
+      setCreatedLink(`${origin}/text?m=${encoded}`)
+      return
+    }
+    setCreatedLink(`${origin}/${activeTab}/${id}`)
+  }
+
+  const handleOpenLink = () => {
+    const next = linkInput.trim()
+    if (!next) return
+    window.location.assign(next)
+  }
+
+  if (isTextView) {
+    return (
+      <div className="viewer">
+        <div className="viewer__card">
+          <p className="viewer__label">Shared text</p>
+          <p className="viewer__text">{sharedText}</p>
+          <a className="viewer__back" href="/">
+            Create another link
+          </a>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -133,6 +164,29 @@ function App() {
             Create link
           </button>
           <span className="actions__note">Link appears below after creation.</span>
+        </div>
+
+        <div className="link-open">
+          <label className="field">
+            <span className="field__label">Open existing link</span>
+            <div className="link-open__row">
+              <input
+                type="text"
+                placeholder="Paste a link to open it"
+                value={linkInput}
+                onChange={(event) => setLinkInput(event.target.value)}
+              />
+              <button
+                type="button"
+                className="secondary"
+                onClick={handleOpenLink}
+                disabled={!linkInput.trim()}
+              >
+                Open
+              </button>
+            </div>
+            <span className="field__hint">Opens the link in the same tab.</span>
+          </label>
         </div>
 
         {createdLink && (
