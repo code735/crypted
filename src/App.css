@@ -55,6 +55,48 @@
   margin-bottom: 20px;
 }
 
+.manager-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  background: #0f1317;
+  border: 1px solid #222833;
+  border-radius: 14px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.manager-tab {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: #d8dde3;
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 78px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.manager-tab[aria-selected='true'] {
+  background: #1a212a;
+  border-color: #2c3541;
+  color: #eef1f4;
+}
+
+.manager-tab__title {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.manager-tab__meta {
+  font-size: 0.82rem;
+  color: #8f98a3;
+}
+
 .tab {
   border: 1px solid transparent;
   border-radius: 10px;
@@ -77,6 +119,69 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.pass-card {
+  background: #0f1317;
+  border: 1px solid #232a34;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pass-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pass-card__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f4f6f8;
+}
+
+.pass-card__meta {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #9aa3ad;
+}
+
+.pass-card__fields {
+  display: grid;
+  gap: 16px;
+}
+
+.pass-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.pass-output input {
+  width: 100%;
+  background: #0f1317;
+  border: 1px solid #2a313b;
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #eef1f4;
+  font-size: 0.95rem;
+}
+
+.pass-footer {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pass-back {
+  font-size: 0.9rem;
+  color: #97d7cf;
 }
 
 .field {
@@ -245,6 +350,12 @@
   }
 
   .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pass-actions,
+  .pass-footer {
     flex-direction: column;
     align-items: flex-start;
   }
