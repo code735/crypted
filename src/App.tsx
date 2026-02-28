@@ -3,128 +3,72 @@ import './App.css'
 
 type InputTab = 'image' | 'video' | 'text'
 
-type PasswordManager = {
+type PasswordEntry = {
   key: string
-  label: string
-  description: string
+  site: string
+  username: string
   url: string
+  updated: string
+  strength: 'Strong' | 'Weak' | 'Reused'
+  password: string
 }
-
-type DashboardStat = {
-  label: string
-  value: string
-  meta: string
-}
-
-type ChecklistItem = {
-  label: string
-  meta: string
-  status: 'done' | 'pending'
-}
-
-type ActivityItem = {
-  label: string
-  meta: string
-}
-
-const passwordManagers: PasswordManager[] = [
-  {
-    key: '1password',
-    label: '1Password',
-    description: 'Teams, travel mode, CLI access.',
-    url: 'https://1password.com',
-  },
-  {
-    key: 'bitwarden',
-    label: 'Bitwarden',
-    description: 'Open source vaults for every device.',
-    url: 'https://bitwarden.com',
-  },
-  {
-    key: 'dashlane',
-    label: 'Dashlane',
-    description: 'Password health and secure sharing.',
-    url: 'https://www.dashlane.com',
-  },
-  {
-    key: 'keeper',
-    label: 'Keeper',
-    description: 'Zero-knowledge security for teams.',
-    url: 'https://www.keepersecurity.com',
-  },
-  {
-    key: 'proton',
-    label: 'Proton Pass',
-    description: 'Privacy-first vaults and aliases.',
-    url: 'https://proton.me/pass',
-  },
-]
 
 const passwordRoute = '/password-manager'
 
-const dashboardStats: DashboardStat[] = [
+const passwordEntries: PasswordEntry[] = [
   {
-    label: 'Saved logins',
-    value: '128',
-    meta: '12 updated this week',
+    key: 'google',
+    site: 'Google',
+    username: 'alex@studio.com',
+    url: 'https://accounts.google.com',
+    updated: 'Today',
+    strength: 'Strong',
+    password: 'H4x!7kR9tT2p',
   },
   {
-    label: 'Shared items',
-    value: '24',
-    meta: '3 pending approvals',
+    key: 'slack',
+    site: 'Slack',
+    username: 'alex@studio.com',
+    url: 'https://slack.com',
+    updated: 'Yesterday',
+    strength: 'Reused',
+    password: 'S1ack!2024',
   },
   {
-    label: 'Security score',
-    value: '92%',
-    meta: 'Up 4 points',
-  },
-]
-
-const securityChecklist: ChecklistItem[] = [
-  {
-    label: 'Rotate admin passwords',
-    meta: 'Last done 14 days ago',
-    status: 'pending',
+    key: 'figma',
+    site: 'Figma',
+    username: 'alex@studio.com',
+    url: 'https://www.figma.com',
+    updated: '2 days ago',
+    strength: 'Strong',
+    password: 'F1gma#Secure22',
   },
   {
-    label: 'Enable two-factor',
-    meta: 'Applied to 18 of 20 accounts',
-    status: 'pending',
+    key: 'github',
+    site: 'GitHub',
+    username: 'alex-porter',
+    url: 'https://github.com',
+    updated: 'Last week',
+    strength: 'Weak',
+    password: 'Github2024',
   },
   {
-    label: 'Lock idle sessions',
-    meta: 'Auto-lock set to 10 minutes',
-    status: 'done',
-  },
-]
-
-const recentActivity: ActivityItem[] = [
-  {
-    label: 'Added GitHub credential',
-    meta: '2 hours ago by Alicia',
+    key: 'notion',
+    site: 'Notion',
+    username: 'alex@studio.com',
+    url: 'https://www.notion.so',
+    updated: 'Last week',
+    strength: 'Strong',
+    password: 'N0tion!Pass42',
   },
   {
-    label: 'Shared payroll vault',
-    meta: 'Yesterday with Finance',
-  },
-  {
-    label: 'Resolved 3 weak passwords',
-    meta: '2 days ago via health audit',
-  },
-]
-
-const actionHighlights = [
-  {
-    label: 'Run health audit',
-    meta: 'Checks weak and reused passwords',
-  },
-  {
-    label: 'Sync vault',
-    meta: 'Last sync 5 minutes ago',
-  },
-  {
-    label: 'Export report',
-    meta: 'Download the security summary',
+    key: 'aws',
+    site: 'AWS',
+    username: 'ops@studio.com',
+    url: 'https://console.aws.amazon.com',
+    updated: '2 weeks ago',
+    strength: 'Reused',
+    password: 'Cl0udOps#12',
   },
 ]
 
@@ -141,11 +85,8 @@ function App() {
   const [textValue, setTextValue] = useState('')
   const [createdLink, setCreatedLink] = useState('')
   const [linkInput, setLinkInput] = useState('')
-  const [selectedManagerKey, setSelectedManagerKey] = useState(passwordManagers[0].key)
-  const [entryName, setEntryName] = useState('')
-  const [entryUsername, setEntryUsername] = useState('')
-  const [passwordLength, setPasswordLength] = useState(18)
-  const [generatedPassword, setGeneratedPassword] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedEntryKey, setSelectedEntryKey] = useState(passwordEntries[0].key)
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied'>('idle')
 
   const tabs: Array<{ key: InputTab; label: string }> = [
@@ -158,8 +99,14 @@ function App() {
     setCreatedLink('')
   }
 
-  const selectedManager =
-    passwordManagers.find((manager) => manager.key === selectedManagerKey) ?? passwordManagers[0]
+  const filteredEntries = passwordEntries.filter((entry) => {
+    const query = searchTerm.trim().toLowerCase()
+    if (!query) return true
+    return `${entry.site} ${entry.username}`.toLowerCase().includes(query)
+  })
+
+  const selectedEntry =
+    filteredEntries.find((entry) => entry.key === selectedEntryKey) ?? filteredEntries[0] ?? null
 
   const generateId = () => {
     if (globalThis.crypto?.randomUUID) {
@@ -191,26 +138,10 @@ function App() {
     window.location.assign(next)
   }
 
-  const handleGeneratePassword = () => {
-    const length = Math.min(40, Math.max(12, Math.floor(passwordLength) || 18))
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*'
-    const values = new Uint32Array(length)
-    if (globalThis.crypto?.getRandomValues) {
-      globalThis.crypto.getRandomValues(values)
-    } else {
-      for (let i = 0; i < length; i += 1) {
-        values[i] = Math.floor(Math.random() * chars.length)
-      }
-    }
-    const next = Array.from(values, (value) => chars[value % chars.length]).join('')
-    setGeneratedPassword(next)
-    setCopyStatus('idle')
-  }
-
   const handleCopyPassword = async () => {
-    if (!generatedPassword) return
+    if (!selectedEntry) return
     try {
-      await navigator.clipboard.writeText(generatedPassword)
+      await navigator.clipboard.writeText(selectedEntry.password)
       setCopyStatus('copied')
     } catch {
       setCopyStatus('idle')
@@ -218,186 +149,152 @@ function App() {
   }
 
   if (isPasswordView) {
+    const issueCount = passwordEntries.filter((entry) => entry.strength !== 'Strong').length
+    const reusedCount = passwordEntries.filter((entry) => entry.strength === 'Reused').length
     return (
       <div className="app">
-        <div className="panel">
-          <header className="panel__header">
-            <p className="eyebrow">Password manager</p>
-            <h1>Vault dashboard</h1>
-            <p className="subtitle">Track vault health, prep entries, and keep your access tidy.</p>
-          </header>
-
-          <div className="manager-grid" role="tablist" aria-label="Password manager">
-            {passwordManagers.map((manager) => (
-              <button
-                key={manager.key}
-                type="button"
-                className="manager-tab"
-                role="tab"
-                aria-selected={selectedManagerKey === manager.key}
-                onClick={() => {
-                  setSelectedManagerKey(manager.key)
-                  setCopyStatus('idle')
-                }}
-              >
-                <span className="manager-tab__title">{manager.label}</span>
-                <span className="manager-tab__meta">{manager.description}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className="dashboard-grid">
-            <section className="dashboard-card">
-              <div className="dashboard-card__header">
-                <p className="dashboard-card__title">Vault overview</p>
-                <p className="dashboard-card__meta">Live snapshot for {selectedManager.label}.</p>
+        <div className="panel panel--wide">
+          <div className="pass-shell">
+            <header className="pass-header">
+              <div>
+                <p className="eyebrow">Password manager</p>
+                <h1>Passwords</h1>
+                <p className="subtitle">Saved logins and passkeys, in one place.</p>
               </div>
+              <div className="pass-header__actions">
+                <button type="button" className="secondary">
+                  Password checkup
+                </button>
+                <button type="button" className="primary">
+                  Add
+                </button>
+              </div>
+            </header>
 
-              <div className="stat-grid">
-                {dashboardStats.map((stat) => (
-                  <div className="stat-card" key={stat.label}>
-                    <p className="stat-card__value">{stat.value}</p>
-                    <p className="stat-card__label">{stat.label}</p>
-                    <p className="stat-card__meta">{stat.meta}</p>
+            <div className="pass-search">
+              <input
+                type="text"
+                placeholder="Search passwords"
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+              />
+            </div>
+
+            <div className="pass-layout">
+              <aside className="pass-list">
+                <div className="pass-summary">
+                  <div className="pass-summary__item">
+                    <p className="pass-summary__value">{passwordEntries.length}</p>
+                    <p className="pass-summary__label">Passwords</p>
                   </div>
-                ))}
-              </div>
+                  <div className="pass-summary__item">
+                    <p className="pass-summary__value">{issueCount}</p>
+                    <p className="pass-summary__label">Issues</p>
+                  </div>
+                  <div className="pass-summary__item">
+                    <p className="pass-summary__value">{reusedCount}</p>
+                    <p className="pass-summary__label">Reused</p>
+                  </div>
+                </div>
 
-              <div className="dashboard-section">
-                <p className="dashboard-section__title">Security checklist</p>
-                <div className="checklist">
-                  {securityChecklist.map((item) => (
-                    <div
-                      className={`checklist-item checklist-item--${item.status}`}
-                      key={item.label}
-                    >
-                      <span
-                        className={`checklist-status checklist-status--${item.status}`}
-                        aria-hidden="true"
-                      />
+                <div className="pass-list-items">
+                  {filteredEntries.length === 0 ? (
+                    <p className="pass-empty">No matches found.</p>
+                  ) : (
+                    filteredEntries.map((entry) => (
+                      <button
+                        key={entry.key}
+                        type="button"
+                        className={`pass-entry${selectedEntry?.key === entry.key ? ' pass-entry--active' : ''}`}
+                        onClick={() => {
+                          setSelectedEntryKey(entry.key)
+                          setCopyStatus('idle')
+                        }}
+                      >
+                        <div className="pass-entry__title-row">
+                          <span className="pass-entry__title">{entry.site}</span>
+                          <span
+                            className={`pass-entry__badge pass-entry__badge--${entry.strength.toLowerCase()}`}
+                          >
+                            {entry.strength}
+                          </span>
+                        </div>
+                        <span className="pass-entry__meta">{entry.username}</span>
+                        <span className="pass-entry__meta">Updated {entry.updated}</span>
+                      </button>
+                    ))
+                  )}
+                </div>
+              </aside>
+
+              <section className="pass-detail">
+                {selectedEntry ? (
+                  <>
+                    <div className="pass-detail__header">
                       <div>
-                        <p className="checklist-item__title">{item.label}</p>
-                        <p className="checklist-item__meta">{item.meta}</p>
+                        <p className="pass-detail__title">{selectedEntry.site}</p>
+                        <p className="pass-detail__meta">{selectedEntry.username}</p>
+                      </div>
+                      <span
+                        className={`pass-strength pass-strength--${selectedEntry.strength.toLowerCase()}`}
+                      >
+                        {selectedEntry.strength}
+                      </span>
+                    </div>
+
+                    <div className="pass-detail__fields">
+                      <div className="pass-field">
+                        <span className="pass-field__label">Website</span>
+                        <a
+                          className="pass-field__value"
+                          href={selectedEntry.url}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {selectedEntry.url}
+                        </a>
+                      </div>
+                      <div className="pass-field">
+                        <span className="pass-field__label">Username</span>
+                        <span className="pass-field__value">{selectedEntry.username}</span>
+                      </div>
+                      <div className="pass-field">
+                        <span className="pass-field__label">Password</span>
+                        <span className="pass-field__value">••••••••••••</span>
+                      </div>
+                      <div className="pass-field">
+                        <span className="pass-field__label">Last updated</span>
+                        <span className="pass-field__value">{selectedEntry.updated}</span>
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
 
-              <div className="dashboard-section">
-                <p className="dashboard-section__title">Recent activity</p>
-                <div className="activity-list">
-                  {recentActivity.map((item) => (
-                    <div className="activity-item" key={item.label}>
-                      <p className="activity-item__title">{item.label}</p>
-                      <p className="activity-item__meta">{item.meta}</p>
+                    <div className="pass-detail__actions">
+                      <button type="button" className="primary" onClick={handleCopyPassword}>
+                        {copyStatus === 'copied' ? 'Copied' : 'Copy password'}
+                      </button>
+                      <a
+                        className="secondary"
+                        href={selectedEntry.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Open site
+                      </a>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="dashboard-section">
-                <p className="dashboard-section__title">Quick actions</p>
-                <div className="action-grid">
-                  {actionHighlights.map((action) => (
-                    <div className="action-tile" key={action.label}>
-                      <p className="action-tile__title">{action.label}</p>
-                      <p className="action-tile__meta">{action.meta}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            <div className="pass-card">
-              <div className="pass-card__header">
-                <p className="pass-card__title">Vault entry details</p>
-                <p className="pass-card__meta">
-                  Organize the entry before you move it into {selectedManager.label}.
-                </p>
-              </div>
-
-              <div className="pass-card__fields">
-                <label className="field">
-                  <span className="field__label">Entry name</span>
-                  <input
-                    type="text"
-                    placeholder="e.g. Work email"
-                    value={entryName}
-                    onChange={(event) => setEntryName(event.target.value)}
-                  />
-                  <span className="field__hint">
-                    {entryName.trim().length > 0
-                      ? `Ready to file under “${entryName.trim()}”.`
-                      : 'Use a clear name you can search later.'}
-                  </span>
-                </label>
-
-                <label className="field">
-                  <span className="field__label">Username or email</span>
-                  <input
-                    type="text"
-                    placeholder="name@company.com"
-                    value={entryUsername}
-                    onChange={(event) => setEntryUsername(event.target.value)}
-                  />
-                  <span className="field__hint">
-                    {entryUsername.trim().length > 0
-                      ? 'Looks good. Keep it consistent with your login.'
-                      : 'Optional, but useful for autofill.'}
-                  </span>
-                </label>
-
-                <label className="field">
-                  <span className="field__label">Password length</span>
-                  <input
-                    type="number"
-                    min={12}
-                    max={40}
-                    value={passwordLength}
-                    onChange={(event) => setPasswordLength(Number(event.target.value))}
-                  />
-                  <span className="field__hint">Recommended: 16+ characters.</span>
-                </label>
-              </div>
-
-              <div className="pass-actions">
-                <button type="button" className="primary" onClick={handleGeneratePassword}>
-                  Generate password
-                </button>
-                <button
-                  type="button"
-                  className="secondary"
-                  onClick={handleCopyPassword}
-                  disabled={!generatedPassword}
-                >
-                  {copyStatus === 'copied' ? 'Copied' : 'Copy'}
-                </button>
-                <span className="actions__note">
-                  {generatedPassword
-                    ? 'Paste it into your manager to finish the entry.'
-                    : 'Generate a password to preview it.'}
-                </span>
-              </div>
-
-              <div className="pass-output">
-                <input
-                  type="text"
-                  readOnly
-                  value={generatedPassword}
-                  placeholder="Your generated password appears here"
-                />
-              </div>
+                  </>
+                ) : (
+                  <div className="pass-empty-detail">
+                    <p>Select a password to see details.</p>
+                  </div>
+                )}
+              </section>
             </div>
-          </div>
 
-          <div className="pass-footer">
-            <a className="secondary" href={selectedManager.url} target="_blank" rel="noreferrer">
-              Open {selectedManager.label}
-            </a>
-            <a className="pass-back" href="/">
-              Back to link builder
-            </a>
+            <div className="pass-footer">
+              <a className="pass-back" href="/">
+                Back to link builder
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -1,16 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
 
 :root {
-  font-family: 'Sora', 'Segoe UI', sans-serif;
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: dark;
-  color: #e6e8eb;
-  background-color: #0c0f12;
+  color-scheme: light;
+  color: #111827;
+  background-color: #f4f6fb;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --surface-subtle: #f7f9fc;
+  --border: #e3e7ef;
+  --border-strong: #cfd6e4;
+  --text-strong: #111827;
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --brand: #1a73e8;
+  --brand-soft: #e8f0fe;
+  --success: #1e7b34;
+  --success-soft: #e7f6ed;
+  --warn: #b54708;
+  --warn-soft: #fff4e5;
+  --info: #2e5aac;
+  --info-soft: #e9f0ff;
 }
 
 * {
@@ -21,7 +37,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #0c0f12;
+  background-color: var(--bg);
 }
 
 #root {
@@ -30,12 +46,12 @@ body {
 
 a {
   font-weight: 500;
-  color: #97d7cf;
+  color: var(--brand);
   text-decoration: none;
 }
 
 a:hover {
-  color: #b6eee6;
+  color: #155bb7;
 }
 
 button,
