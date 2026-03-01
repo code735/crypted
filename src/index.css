@@ -4,29 +4,30 @@
   font-family: 'Manrope', 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light;
-  color: #111827;
-  background-color: #f4f6fb;
+  color-scheme: dark;
+  color: #d2d8e3;
+  background-color: #0b0f17;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --bg: #f4f6fb;
-  --surface: #ffffff;
-  --surface-subtle: #f7f9fc;
-  --border: #e3e7ef;
-  --border-strong: #cfd6e4;
-  --text-strong: #111827;
-  --text: #1f2937;
-  --text-muted: #6b7280;
-  --brand: #1a73e8;
-  --brand-soft: #e8f0fe;
-  --success: #1e7b34;
-  --success-soft: #e7f6ed;
-  --warn: #b54708;
-  --warn-soft: #fff4e5;
-  --info: #2e5aac;
-  --info-soft: #e9f0ff;
+  --bg: #0b0f17;
+  --surface: #151b26;
+  --surface-subtle: #10151f;
+  --surface-hover: #1a2231;
+  --border: #273246;
+  --border-strong: #36455f;
+  --text-strong: #f4f7fd;
+  --text: #d2d8e3;
+  --text-muted: #8b97ab;
+  --brand: #7bb2ff;
+  --brand-soft: #1b2c4b;
+  --success: #3ddc84;
+  --success-soft: #152c22;
+  --warn: #f4a259;
+  --warn-soft: #342516;
+  --info: #5cc3ff;
+  --info-soft: #123141;
 }
 
 * {
@@ -51,7 +52,7 @@ a {
 }
 
 a:hover {
-  color: #155bb7;
+  color: #9dc7ff;
 }
 
 button,

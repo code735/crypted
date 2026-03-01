@@ -4,7 +4,12 @@
   align-items: center;
   justify-content: center;
   padding: 56px 20px 72px;
-  background: radial-gradient(1200px 800px at 12% 8%, #ffffff 0%, #eef3ff 45%, #f4f6fb 100%);
+  background: radial-gradient(
+    1200px 800px at 12% 8%,
+    rgba(92, 140, 214, 0.18) 0%,
+    rgba(9, 12, 18, 0.92) 45%,
+    #07090f 100%
+  );
   color: var(--text);
 }
 
@@ -14,7 +19,7 @@
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 30px 30px 34px;
-  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
   animation: rise 0.45s ease both;
 }
 
@@ -89,7 +94,7 @@
   padding: 12px 14px;
   color: var(--text);
   font-size: 0.95rem;
-  box-shadow: inset 0 1px 0 rgba(15, 23, 42, 0.03);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 .pass-layout {
@@ -122,7 +127,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
 }
 
 .pass-summary__value {
@@ -162,15 +167,15 @@
 
 .pass-entry:hover {
   border-color: var(--border-strong);
-  background: #f9fbff;
+  background: var(--surface-hover);
   transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
 }
 
 .pass-entry--active {
   border-color: var(--brand);
   background: var(--brand-soft);
-  box-shadow: 0 12px 24px rgba(26, 115, 232, 0.14);
+  box-shadow: 0 12px 24px rgba(71, 140, 255, 0.3);
 }
 
 .pass-entry__title-row {
@@ -196,8 +201,8 @@
   letter-spacing: 0.08em;
   padding: 3px 6px;
   border-radius: 999px;
-  background: #eef2f7;
-  color: #526072;
+  background: var(--surface-subtle);
+  color: var(--text-muted);
 }
 
 .pass-entry__badge--strong {
@@ -229,7 +234,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.4);
 }
 
 .pass-detail__header {
@@ -258,8 +263,8 @@
   letter-spacing: 0.12em;
   padding: 4px 8px;
   border-radius: 999px;
-  background: #eef2f7;
-  color: #526072;
+  background: var(--surface-subtle);
+  color: var(--text-muted);
 }
 
 .pass-strength--strong {
@@ -327,7 +332,7 @@
   background: var(--surface);
   color: var(--text-strong);
   border-color: var(--border-strong);
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
 .input-area {
@@ -370,7 +375,7 @@
   padding: 12px 14px;
   color: var(--text);
   font-size: 0.95rem;
-  box-shadow: inset 0 1px 0 rgba(15, 23, 42, 0.03);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 .field textarea {
@@ -400,7 +405,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.15s ease, opacity 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 10px 18px rgba(26, 115, 232, 0.18);
+  box-shadow: 0 10px 18px rgba(71, 140, 255, 0.35);
 }
 
 .primary:disabled {
@@ -411,7 +416,7 @@
 
 .primary:not(:disabled):hover {
   transform: translateY(-1px);
-  box-shadow: 0 14px 24px rgba(26, 115, 232, 0.22);
+  box-shadow: 0 14px 24px rgba(71, 140, 255, 0.45);
 }
 
 .actions__note {
@@ -500,7 +505,12 @@
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
-  background: radial-gradient(1200px 800px at 15% 10%, #ffffff 0%, #eef3ff 45%, #f4f6fb 100%);
+  background: radial-gradient(
+    1200px 800px at 15% 10%,
+    rgba(92, 140, 214, 0.16) 0%,
+    rgba(9, 12, 18, 0.92) 45%,
+    #07090f 100%
+  );
 }
 
 .viewer__card {
@@ -509,7 +519,7 @@
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 24px;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
 }
 
 .viewer__label {
@@ -541,7 +551,7 @@
 .pass-search input:focus-visible,
 .field input:focus-visible,
 .field textarea:focus-visible {
-  outline: 3px solid rgba(26, 115, 232, 0.25);
+  outline: 3px solid rgba(123, 178, 255, 0.35);
   outline-offset: 2px;
 }
 
