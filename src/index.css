@@ -1,33 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 
 :root {
-  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  font-family: 'JetBrains Mono', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas',
+    'Liberation Mono', 'Courier New', monospace;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
-  color: #d2d8e3;
-  background-color: #0b0f17;
+  color: #c7f5cd;
+  background-color: #070a07;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --bg: #0b0f17;
-  --surface: #151b26;
-  --surface-subtle: #10151f;
-  --surface-hover: #1a2231;
-  --border: #273246;
-  --border-strong: #36455f;
-  --text-strong: #f4f7fd;
-  --text: #d2d8e3;
-  --text-muted: #8b97ab;
-  --brand: #7bb2ff;
-  --brand-soft: #1b2c4b;
-  --success: #3ddc84;
-  --success-soft: #152c22;
-  --warn: #f4a259;
-  --warn-soft: #342516;
-  --info: #5cc3ff;
-  --info-soft: #123141;
+  --bg: #070a07;
+  --surface: #0d120e;
+  --surface-subtle: #0b100c;
+  --surface-hover: #141b16;
+  --border: #1c2a22;
+  --border-strong: #2d4634;
+  --text-strong: #e4ffe8;
+  --text: #c7f5cd;
+  --text-muted: #84b18d;
+  --brand: #7cff9a;
+  --brand-soft: #132c1b;
+  --success: #7cff9a;
+  --success-soft: #102819;
+  --warn: #f9c06c;
+  --warn-soft: #2f2414;
+  --info: #6ce5ff;
+  --info-soft: #10262d;
 }
 
 * {
@@ -52,7 +53,7 @@ a {
 }
 
 a:hover {
-  color: #9dc7ff;
+  color: #a6ffba;
 }
 
 button,

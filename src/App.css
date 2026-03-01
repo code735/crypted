@@ -5,11 +5,18 @@
   justify-content: center;
   padding: 56px 20px 72px;
   background: radial-gradient(
-    1200px 800px at 12% 8%,
-    rgba(92, 140, 214, 0.18) 0%,
-    rgba(9, 12, 18, 0.92) 45%,
-    #07090f 100%
-  );
+      1200px 800px at 12% 8%,
+      rgba(124, 255, 154, 0.18) 0%,
+      rgba(7, 10, 7, 0.92) 45%,
+      #050806 100%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(124, 255, 154, 0.05) 0,
+      rgba(124, 255, 154, 0.05) 1px,
+      transparent 1px,
+      transparent 3px
+    );
   color: var(--text);
 }
 
@@ -17,9 +24,9 @@
   width: min(640px, 92vw);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 14px;
   padding: 30px 30px 34px;
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(124, 255, 154, 0.08);
   animation: rise 0.45s ease both;
 }
 
@@ -62,7 +69,7 @@
   gap: 8px;
   background: var(--surface-subtle);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 6px;
   margin-bottom: 20px;
 }
@@ -106,7 +113,7 @@
 .pass-list {
   background: var(--surface-subtle);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 14px;
   padding: 18px;
   display: flex;
   flex-direction: column;
@@ -122,12 +129,12 @@
 .pass-summary__item {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 10px 12px;
   display: flex;
   flex-direction: column;
   gap: 2px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
 }
 
 .pass-summary__value {
@@ -153,7 +160,7 @@
 .pass-entry {
   border: 1px solid transparent;
   background: var(--surface);
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 12px 14px;
   text-align: left;
   display: grid;
@@ -169,13 +176,13 @@
   border-color: var(--border-strong);
   background: var(--surface-hover);
   transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(124, 255, 154, 0.08);
 }
 
 .pass-entry--active {
   border-color: var(--brand);
   background: var(--brand-soft);
-  box-shadow: 0 12px 24px rgba(71, 140, 255, 0.3);
+  box-shadow: 0 12px 24px rgba(23, 40, 29, 0.45), 0 0 18px rgba(124, 255, 154, 0.2);
 }
 
 .pass-entry__title-row {
@@ -229,12 +236,12 @@
 .pass-detail {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 14px;
   padding: 20px 22px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(124, 255, 154, 0.06);
 }
 
 .pass-detail__header {
@@ -318,7 +325,7 @@
 
 .tab {
   border: 1px solid transparent;
-  border-radius: 12px;
+  border-radius: 8px;
   background: transparent;
   color: var(--text-muted);
   padding: 10px 12px;
@@ -329,10 +336,10 @@
 }
 
 .tab[aria-selected='true'] {
-  background: var(--surface);
+  background: var(--surface-hover);
   color: var(--text-strong);
-  border-color: var(--border-strong);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  border-color: var(--brand);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(124, 255, 154, 0.16);
 }
 
 .input-area {
@@ -371,7 +378,7 @@
   width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 10px;
   padding: 12px 14px;
   color: var(--text);
   font-size: 0.95rem;
@@ -396,16 +403,16 @@
 }
 
 .primary {
-  border: none;
-  border-radius: 999px;
-  background: var(--brand);
-  color: #ffffff;
+  border: 1px solid var(--brand);
+  border-radius: 8px;
+  background: rgba(15, 26, 18, 0.7);
+  color: var(--brand);
   padding: 12px 20px;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.15s ease, opacity 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 10px 18px rgba(71, 140, 255, 0.35);
+  box-shadow: 0 10px 18px rgba(10, 22, 14, 0.6), 0 0 18px rgba(124, 255, 154, 0.18);
 }
 
 .primary:disabled {
@@ -416,7 +423,7 @@
 
 .primary:not(:disabled):hover {
   transform: translateY(-1px);
-  box-shadow: 0 14px 24px rgba(71, 140, 255, 0.45);
+  box-shadow: 0 16px 26px rgba(10, 22, 14, 0.7), 0 0 24px rgba(124, 255, 154, 0.28);
 }
 
 .actions__note {
@@ -436,8 +443,8 @@
 
 .secondary {
   border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
+  border-radius: 8px;
+  background: transparent;
   color: var(--text-strong);
   padding: 11px 18px;
   font-size: 0.92rem;
@@ -447,10 +454,11 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  box-shadow: inset 0 0 0 1px rgba(124, 255, 154, 0.05);
 }
 
 .secondary:hover {
-  border-color: var(--border-strong);
+  border-color: var(--brand);
 }
 
 .secondary:disabled {
@@ -461,7 +469,7 @@
 .result {
   margin-top: 20px;
   padding: 14px 16px;
-  border-radius: 14px;
+  border-radius: 12px;
   background: var(--surface-subtle);
   border: 1px solid var(--border);
   display: flex;
@@ -485,7 +493,7 @@
 .panel-footer {
   margin-top: 22px;
   padding: 16px;
-  border-radius: 16px;
+  border-radius: 12px;
   background: var(--surface-subtle);
   border: 1px solid var(--border);
   display: flex;
@@ -506,20 +514,27 @@
   justify-content: center;
   padding: 40px 20px;
   background: radial-gradient(
-    1200px 800px at 15% 10%,
-    rgba(92, 140, 214, 0.16) 0%,
-    rgba(9, 12, 18, 0.92) 45%,
-    #07090f 100%
-  );
+      1200px 800px at 15% 10%,
+      rgba(124, 255, 154, 0.16) 0%,
+      rgba(7, 10, 7, 0.92) 45%,
+      #050806 100%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(124, 255, 154, 0.05) 0,
+      rgba(124, 255, 154, 0.05) 1px,
+      transparent 1px,
+      transparent 3px
+    );
 }
 
 .viewer__card {
   width: min(640px, 92vw);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 14px;
   padding: 24px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(124, 255, 154, 0.08);
 }
 
 .viewer__label {
@@ -551,7 +566,7 @@
 .pass-search input:focus-visible,
 .field input:focus-visible,
 .field textarea:focus-visible {
-  outline: 3px solid rgba(123, 178, 255, 0.35);
+  outline: 3px solid rgba(124, 255, 154, 0.35);
   outline-offset: 2px;
 }
 
