@@ -7,12 +7,12 @@
   font-weight: 400;
   color-scheme: dark;
   color: #c7f5cd;
-  background-color: #070a07;
+  background-color: #000000;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --bg: #070a07;
+  --bg: #000000;
   --surface: #0d120e;
   --surface-subtle: #0b100c;
   --surface-hover: #141b16;
