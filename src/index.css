@@ -12,23 +12,23 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --bg: #000000;
-  --surface: #0d120e;
-  --surface-subtle: #0b100c;
-  --surface-hover: #141b16;
-  --border: #1c2a22;
-  --border-strong: #2d4634;
-  --text-strong: #e4ffe8;
-  --text: #c7f5cd;
-  --text-muted: #84b18d;
+  --bg: #050806;
+  --surface: #050806;
+  --surface-subtle: #050806;
+  --surface-hover: #0b1410;
+  --border: #1b3626;
+  --border-strong: #2f6a46;
+  --text-strong: #ddffe7;
+  --text: #bff6cf;
+  --text-muted: #7faa8a;
   --brand: #7cff9a;
-  --brand-soft: #132c1b;
+  --brand-soft: rgba(124, 255, 154, 0.08);
   --success: #7cff9a;
-  --success-soft: #102819;
-  --warn: #f9c06c;
-  --warn-soft: #2f2414;
+  --success-soft: rgba(124, 255, 154, 0.08);
+  --warn: #f6c274;
+  --warn-soft: rgba(246, 194, 116, 0.08);
   --info: #6ce5ff;
-  --info-soft: #10262d;
+  --info-soft: rgba(108, 229, 255, 0.08);
 }
 
 * {
