@@ -13,7 +13,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --bg: #050806;
-  --surface: #050806;
+  --surface: #070b08;
   --surface-subtle: #050806;
   --surface-hover: #0b1410;
   --border: #1b3626;
@@ -29,6 +29,7 @@
   --warn-soft: rgba(246, 194, 116, 0.08);
   --info: #6ce5ff;
   --info-soft: rgba(108, 229, 255, 0.08);
+  --radius: 0px;
 }
 
 * {
