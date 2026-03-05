@@ -149,8 +149,6 @@ function App() {
   }
 
   if (isPasswordView) {
-    const issueCount = passwordEntries.filter((entry) => entry.strength !== 'Strong').length
-    const reusedCount = passwordEntries.filter((entry) => entry.strength === 'Reused').length
     return (
       <div className="app">
         <div className="panel panel--wide">
@@ -182,21 +180,6 @@ function App() {
 
             <div className="pass-layout">
               <aside className="pass-list">
-                <div className="pass-summary">
-                  <div className="pass-summary__item">
-                    <p className="pass-summary__value">{passwordEntries.length}</p>
-                    <p className="pass-summary__label">Passwords</p>
-                  </div>
-                  <div className="pass-summary__item">
-                    <p className="pass-summary__value">{issueCount}</p>
-                    <p className="pass-summary__label">Issues</p>
-                  </div>
-                  <div className="pass-summary__item">
-                    <p className="pass-summary__value">{reusedCount}</p>
-                    <p className="pass-summary__label">Reused</p>
-                  </div>
-                </div>
-
                 <div className="pass-list-items">
                   {filteredEntries.length === 0 ? (
                     <p className="pass-empty">No matches found.</p>

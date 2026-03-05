@@ -108,38 +108,6 @@
   gap: 16px;
 }
 
-.pass-summary {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.pass-summary__item {
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 10px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  box-shadow: none;
-}
-
-.pass-summary__value {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--text-strong);
-}
-
-.pass-summary__label {
-  margin: 0;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
 .pass-list-items {
   display: grid;
   gap: 12px;
